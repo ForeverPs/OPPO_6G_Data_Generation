@@ -6,7 +6,7 @@
 - please put the original data in `data` folder.
 
 ## Pretrained Models
-We provide several pretrained models in folder `saved_models`.
+We provide several pretrained models in the folder of `saved_models`.
 - sim : similarity score tested on the raw data.
 - multi : multi score tested on the raw data.
 - score : tested on the local raw data.
@@ -19,9 +19,9 @@ We provide several pretrained models in folder `saved_models`.
 ## Training
 - modify the `data_type` in `train.py`, maybe you have to choose a suitable GPU id.
 - Online validation, only save the models with best scores so far.
-- Benchmark : data1: local_score approx 0.82~0.83
-- Benchmark : data2: local_score approx 0.76~0.77
-- Hints : smaller batch_size may result in higher similarity score and higher multi score.
+- Benchmark : data1: local score approx 0.82~0.83
+- Benchmark : data2: local score approx 0.76~0.77
+- Hints : smaller batch size may result in higher similarity score and higher multi score.
 - epochs : we perform no ablation study on this parameter, you can just let it run.
 
 ## Data Augmentation Scheme
