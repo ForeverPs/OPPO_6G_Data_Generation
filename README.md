@@ -42,7 +42,7 @@ We provide several pretrained models in the folder of `saved_models`.
 - Without deep ensembles, it is still trivial to achieve a score up to 0.72
 
 ## Reference
-- [Deep Residual Learning for image recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf) (CVPR, 2016)
+- [Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf) (CVPR, 2016)
 - [Dual Attention Network for Scene Segmentation](https://openaccess.thecvf.com/content_CVPR_2019/papers/Fu_Dual_Attention_Network_for_Scene_Segmentation_CVPR_2019_paper.pdf) (CVPR, 2019)
 - [Deep Learning-based Implicit CSI Feedback in Massive MIMO](https://arxiv.org/pdf/2105.10100.pdf) (IEEE Transactions on Communications, 2021)
 
