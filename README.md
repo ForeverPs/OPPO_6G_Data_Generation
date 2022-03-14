@@ -30,7 +30,7 @@ We provide several pretrained models in the folder of `saved_models`.
 - We randomly scale the data with a factor between 0.8~1.2, random gaussian noise with mean=0 and std=1e-4 is adopted.
 
 ## Submit_pt
-- you can just use the single model without ensembles with is much easier.
+- you can just use the single model without ensembles which is much easier.
 - Without ensembles, it is still trivial to achieve a score up to 0.72
 
 ## Architectures
