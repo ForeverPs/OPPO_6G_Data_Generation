@@ -5,16 +5,25 @@
 - H2_32T4R.mat
 - please put the original data in `data` folder.
 
+## Data Augmentation Scheme
+- Complex number is special : a+bj has a same square similarity with (-a-bj), (b-aj) and (-b+aj).
+- With the strategy above, you can quadruple the amount of training data compared to the raw.
+- We randomly scale the data with a factor between 0.8~1.2, random gaussian noise with mean=0 and std=1e-4 is adopted.
+
+## Architectures
+- Auto encoder with reconstruction loss.
+- ResNet18 as an Encoder.
+- 3D Conv as a Decoder.
+- Position Attention Module and Channel Attention Module are important.
+- Normalization such as `BatchNorm2d` after Decoder is important.
+- Latent Quantization.
+
 ## Pretrained Models
 We provide several pretrained models in the folder of `saved_models`.
 - sim : similarity score tested on the raw data.
 - multi : multi score tested on the raw data.
 - score : tested on the local raw data.
 - feel free to use the pretrained weights or training from scratch.
-
-## Boost Scheme
-- we use adaboost weights to ensemble several models for acquiring performance gain. 
-- Without model ensembles, you can still achieve a online score up to 0.72 easily.
 
 ## Training
 - modify the `data_type` in `train.py`, maybe you have to choose a suitable GPU id.
@@ -24,22 +33,13 @@ We provide several pretrained models in the folder of `saved_models`.
 - Hints : smaller batch size may result in higher similarity score and higher multi score.
 - epochs : we perform no ablation study on this parameter, you can just let it run.
 
-## Data Augmentation Scheme
-- Complex number is special : a+bj has a same square similarity with (-a-bj), (b-aj) and (-b+aj).
-- With the strategy above, you can quadruple the amount of training data compared to the raw.
-- We randomly scale the data with a factor between 0.8~1.2, random gaussian noise with mean=0 and std=1e-4 is adopted.
+## Boost Scheme
+- we use adaboost weights to ensemble several models for acquiring performance gain. 
+- Without model ensembles, you can still achieve a online score up to 0.72 easily.
 
 ## Submit_pt
 - you can just use the single model without ensembles which is much easier.
 - Without ensembles, it is still trivial to achieve a score up to 0.72
-
-## Architectures
-- Auto encoder with reconstruction loss.
-- ResNet18 as Encoder.
-- 3D Conv as our Decoder.
-- Position Attention Module and Channel Attention Module are important.
-- Normalization such as `BatchNorm2d` after Decoder is important.
-- Latent Quantization.
 
 ## Reference
 - [Deep Residual Learning for image recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf) (CVPR, 2016)
