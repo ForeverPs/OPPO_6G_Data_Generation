@@ -38,7 +38,7 @@ We provide several pretrained models in the folder of `saved_models`.
 - ResNet18 as Encoder.
 - 3D Conv as our Decoder.
 - Position Attention Module and Channel Attention Module are important.
-- `BatchNorm2d` or `LayerNorm` after Decoder is important.
+- Normalization such as `BatchNorm2d` after Decoder is important.
 - Latent Quantization.
 
 ## Reference
