@@ -6,9 +6,9 @@
 - please put the original data in `data` folder.
 
 ## Data Augmentation Scheme
-- Complex number is special : a+bj has a same square similarity with (-a-bj), (b-aj) and (-b+aj).
+- Complex number is special : `a+bj` has a same square similarity with `-a-bj`, `b-aj` and `-b+aj`
 - With the strategy above, you can quadruple the amount of training data compared to the raw.
-- We randomly scale the data with a factor between 0.8~1.2, random gaussian noise with mean=0 and std=1e-4 is adopted.
+- We randomly scale the data with a factor between 0.8~1.2, random gaussian noise with `mean`=0 and `std`=1e-4 is adopted.
 
 ## Architectures
 - Auto encoder with reconstruction loss.
