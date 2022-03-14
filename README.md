@@ -1,4 +1,4 @@
-# OPPO_6G_Data_Generation
+# OPPO 6G Data Generation with an End-to-end Framework
 
 ## Datasets
 - H1_32T4R.mat
