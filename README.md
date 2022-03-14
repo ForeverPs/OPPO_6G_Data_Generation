@@ -35,7 +35,7 @@ We provide several pretrained models in the folder of `saved_models`.
 
 ## Boost Scheme
 - we use adaboost weights to ensemble several models for acquiring performance gain. 
-- Without model ensembles, you can still achieve a online score up to 0.72 easily.
+- Without model ensembles, you can still achieve an online score up to 0.72 easily.
 
 ## Submit_pt
 - you can just use the single model without ensembles which is much easier.
