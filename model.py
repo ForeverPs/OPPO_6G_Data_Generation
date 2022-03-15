@@ -360,7 +360,7 @@ class ResVAE(nn.Module):
         target_complex = torch.complex(target[..., 0], target[..., 1])
         target = F.normalize(target_complex, p=2, dim=1)
         recon_loss = F.mse_loss(predict.real, target.real) + F.mse_loss(predict.imag, target.imag)
-        return 1000 * recon_loss
+        return recon_loss
 
 
 if __name__ == '__main__':
