@@ -22,7 +22,7 @@ def train(epochs, batch_size, data_path, lr, aug_ratio):
     model = model.to(device)
 
     optimizer = Adam(model.parameters(), lr=lr)
-    scheduler = StepLR(optimizer, step_size=100, gamma=.5)
+    scheduler = StepLR(optimizer, step_size=200, gamma=.5)
 
     best_score = score_thresh
     for epoch in range(epochs):
