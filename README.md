@@ -1,4 +1,4 @@
-# <img src="https://github.com/ForeverPs/OPPO_6G_Data_Generation/blob/main/data/rank3.png" alt="Awesome Badge"/> OPPO 6G Data Generation with an E2E Framework
+# <img src="https://github.com/ForeverPs/OPPO_6G_Data_Generation/blob/main/data/rank3.png" width="80px"/> OPPO 6G Data Generation with an E2E Framework
 
 ## Datasets
 - H1_32T4R.mat
