@@ -1,4 +1,4 @@
-# OPPO 6G Data Generation with an E2E Framework
+# Rank 3 : OPPO 6G Data Generation with an E2E Framework
 
 ## Datasets
 - H1_32T4R.mat
