@@ -210,6 +210,8 @@ def convert2bit(input_n, B):
 class Bitflow(torch.autograd.Function):
     @staticmethod
     def forward(ctx, x, b_):
+        # same with torch.quantize_per_tensor
+        # toch.quantize_per_tensor can not be converted into ONNX format
         ctx.constant = b_
         scale = 2 ** b_
         out = torch.round(x * scale - 0.5)
@@ -231,20 +233,6 @@ class BitLayer(nn.Module):
         out = Bitflow.apply(x, self.B)
         return out
 
-# ConvBlock for VAE3D Encoder    
-class ConvNet(nn.Module):
-    def __init__(self, input_channel, output_channel):
-        super(ConvNet, self).__init__()
-        self.conv = nn.Conv3d(input_channel, output_channel, kernel_size=3, stride=2, padding=1)
-        self.bn = nn.BatchNorm3d(output_channel)
-        self.relu = nn.LeakyReLU(0.1)
-
-    def forward(self, x):
-        x = self.conv(x)
-        x = self.bn(x)
-        x = self.relu(x)
-        return x
-
 # Upsampling for VAE3D Decoder
 class ConvTransposeNet(nn.Module):
     def __init__(self, input_channel, output_channel):
@@ -259,30 +247,6 @@ class ConvTransposeNet(nn.Module):
         x = self.relu(x)
         return x
 
-# VAE3D Encoder
-class Encoder(nn.Module):
-    def __init__(self, input_dim, latent_dim=128):
-        super(Encoder, self).__init__()
-        self.avg_pooling = torch.nn.AdaptiveAvgPool3d((32, 32, 32))
-        self.conv_block = nn.Sequential(
-            ConvNet(input_dim, 32),
-            ConvNet(32, 64),
-            ConvNet(64, 128),
-            ConvNet(128, 256),
-            ConvNet(256, 512),
-        )
-        self.feat = nn.Linear(512, latent_dim // 2)
-        self.sigmoid = nn.Sigmoid()
-        self.bit_layer = BitLayer(2)
-
-    def forward(self, x):
-        x = self.avg_pooling(x)
-        x = self.conv_block(x).reshape(x.shape[0], 512)
-        feat = self.feat(x)
-        feat = self.sigmoid(feat)
-        feat = self.bit_layer(feat)
-        return feat
-
 # VAE3D Decoder
 class BaseLineDecoder(nn.Module):
     def __init__(self, input_dim, hidden_dim):
@@ -290,7 +254,7 @@ class BaseLineDecoder(nn.Module):
         linear_block = nn.Sequential(
             nn.Linear(hidden_dim, 2048),
             nn.BatchNorm1d(2048),
-            # nn.Dropout(0.2),
+            nn.Dropout(0.2),
             nn.LeakyReLU(),
         )
         conv_block = nn.Sequential(
@@ -324,7 +288,7 @@ class BaseLineDecoder(nn.Module):
         output = self.linear_block(input)
         output = output.view(-1, 512, 2, 2)
         output = self.conv_block(output) # [batch, 16, 64, 64]
-        output = self.head(output)  # [batch, 8, 32, 32]
+        output = self.head(output)       # [batch, 8, 32, 32]
         output = output * self.sigmoid(self.pam(output) + self.cam(output))
         output = self.layer_norm(output)
         output = self.sigmoid(output) - 0.5
@@ -365,7 +329,7 @@ class ResVAE(nn.Module):
 
 if __name__ == '__main__':
     model = ResVAE().eval().to(device)
-    model.load_state_dict(torch.load('saved_models/2/att_sim_0.212_multi_1.918_score_0.774.pth', map_location=device))
+    model.load_state_dict(torch.load('saved_models/2/att_sim_0.212_multi_1.918_score_0.774.pth', map_location=device), strict=True)
     recon = model.sample(10)
     x = torch.randn(10, 128)
     print(recon.shape)
