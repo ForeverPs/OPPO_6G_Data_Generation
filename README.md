@@ -1,6 +1,6 @@
 # <img src="https://github.com/ForeverPs/OPPO_6G_Data_Generation/blob/main/data/rank3.png" width="60px"/> OPPO 6G Data Generation with an E2E Framework
 
-[Homepage of OPPO 6G Challenge](https://www.datafountain.cn/competitions/557/ranking?isRedance=0&sch=1900&lang=en-US)
+[Homepage of OPPO 6G Data Generation Challenge](https://www.datafountain.cn/competitions/557/ranking?isRedance=0&sch=1900&lang=en-US)
 
 ## Datasets
 - H1_32T4R.mat
